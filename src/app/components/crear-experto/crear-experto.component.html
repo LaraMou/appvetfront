@@ -1,0 +1,142 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+    {{ err }}
+  </li>
+</ul>
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h1>Hola! Crea tus tareas</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+
+        <!-- Formulario, al pulsar en el submit, llama a la funcion addContact -->
+        <!-- Cada control almacena una propiedad de un atributo con ngModel -->
+        <form #form="ngForm" (ngSubmit)="update()">
+
+          <div class="row form-group">
+            <div class="col-md-6 col-12 form-group">
+
+              <!-- Nombre y Apellidos completo -->
+              <!-- Requerido, 3 caracteres minimo -->
+              <label for="name">Nombre (*)</label>
+              <input type="text"
+                class="form-control"
+                name="name"
+                id="name"
+                placeholder="Escribe un nombre..."
+                minlength="3"
+                required
+                #name="ngModel"
+                [(ngModel)]="experto.nombre"
+                [ngClass]="{
+                  'is-valid': name.dirty && !name.errors,
+                  'is-invalid': name.dirty && name.errors
+                }">
+
+                <!-- Muestra si es correcto o no (bootstrap) -->
+                <div class="valid-feedback">
+                  <span>¡Correcto!</span>
+                </div>
+                <div class="invalid-feedback">
+                  <span *ngIf="name.errors?.required">Valor requerido</span>
+                  <span *ngIf="name.errors?.minlength">Se necesitan minimo {{name.errors?.minlength.requiredLength}} caracteres y llevas {{name.errors?.minlength.actualLength}} caracteres</span>
+                </div>
+            </div>
+            </div>
+           <div class="col-md-6 col-12 form-group">
+
+            <div class="form-group row">
+              <div class="col-sm-6">
+                <mat-form-field class="example-chip-list">
+                  <mat-label>Añadir Etiqueta</mat-label>
+                  <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip *ngFor="let etiqueta of etiquetas" [selectable]="selectable"
+                             [removable]="removable" (removed)="remove(etiqueta)">
+                      {{etiqueta.nombre}}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New etiqueta..."
+                           [matChipInputFor]="chipList"
+                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                           [matChipInputAddOnBlur]="addOnBlur"
+                           (matChipInputTokenEnd)="add($event)">
+                  </mat-chip-list>
+                </mat-form-field>
+
+              </div>
+            </div>
+
+          <div class="row form-group">
+            <div class="col-12 form-group">
+              <!-- Disponibilidad -->
+              <label for="disponibilidad">Disponibilidad</label>
+              <select class="custom-select is-valid"
+                name="disponibilidad"
+                id="disponibilidad"
+                #direccion="ngModel"
+                [(ngModel)]="experto.disponibilidad">
+                <option value="Mañana">Mañana</option>
+                <option value="Tarde">Tarde</option>
+                <option value="Otros">Otros</option>
+              </select>
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="row form-group">
+
+            <div class="col-md-6 col-12 form-group">
+
+              <!-- Email -->
+              <!-- Requerido, patron email -->
+              <label for="email">Email (*)</label>
+              <input type="text"
+                class="form-control"
+                name="email"
+                id="email"
+                placeholder="Escribe tu email..."
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                required
+                #email="ngModel"
+                [(ngModel)]="experto.email"
+                [ngClass]="{
+                  'is-valid': email.dirty && !email.errors,
+                  'is-invalid': email.dirty && email.errors
+                }">
+
+                <div class="valid-feedback">
+                  <span>¡Correcto!</span>
+                </div>
+                <div class="invalid-feedback">
+                  <span *ngIf="email.errors?.required">Valor requerido</span>
+                  <span *ngIf="email.errors?.pattern">El formato no es correcto</span>
+                </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <!-- boton submit -->
+              <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block">Añadir experto</button>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

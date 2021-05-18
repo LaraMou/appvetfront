@@ -1,0 +1,53 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Expertos</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado de expertos</h5>
+    <div class="my-2 text-left">
+      <button  class="btn btn-rounded btn-primary" type="button" [routerLink]="['/etiquetas/form']">
+      Crear Tarea
+      </button>
+    </div>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <!-- <th *ngIf="authService.hasRole('ROLE_USER')">#</th> -->
+          <th>Foto</th>
+          <th>NOMBRE</th>
+          <th>CONTACTO</th>
+          <th>TAREAS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let experto of expertos">
+          <td >
+            <a [routerLink]="['/detalle/'+ experto.id]">
+            <img
+              src="\assets\img\baseline_groups_black_24dp.png" alt="Sin foto" class="img-thumbnail rounded"
+              style="width:64px; cursor: pointer;"> </a>
+            </td>
+          <td>{{ experto.nombre | uppercase}}</td>
+          <td>{{ experto.email | uppercase }}</td>
+          <td>
+            <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal">
+              <mat-chip class="example-box" cdkDrag *ngFor="let vegetable of experto.tasks">
+                  {{ vegetable.title }}
+             </mat-chip>
+            </mat-chip-list>
+          </td>
+
+          <!-- <td *ngIf="authService.hasRole('ROLE_ADMIN')"><button type="button" class="btn btn-success btn-sm" [routerLink]="['/facturas/form', experto.id]">crear factura</button></td>
+          <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+            <button type="button" name="editar" [routerLink]="['/clientes/form', experto.id]" class="btn btn-primary btn-sm">editar</button>
+          </td>
+          <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+            <button type="button" name="eliminar" (click)='delete(experto)' class="btn btn-danger btn-sm">eliminar</button>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+    <paginator-nav *ngIf="paginador" [paginador]="paginador"></paginator-nav>
+  </div>
+</div>
+
+

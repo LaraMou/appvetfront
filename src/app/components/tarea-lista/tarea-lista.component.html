@@ -1,0 +1,38 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Etiquetas</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado de etiquetas</h5>
+    <div class="my-2 text-left">
+
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>TITIULO</th>
+          <th>ESTADO</th>
+          <th>MODIFICADO POR</th>
+          <th>FECHA</th>
+          <th>
+            editar
+          </th>
+          <th>eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let etiqueta of etiquetas">
+          <td>{{ etiqueta.title }}</td>
+          <td>{{ etiqueta.estado }}</td>
+          <td>{{ etiqueta.lastModifiedBy }}</td>
+          <td>{{ etiqueta.createdDate }}</td>
+          <td>
+            <button type="button" name="editar" [routerLink]="['/etiquetas/form',etiqueta.id]" class="btn btn-primary btn-sm">editar</button>
+          </td>
+          <td>
+            <button type="button" name="eliminar" (click)='delete(etiqueta)' class="btn btn-danger btn-sm">eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

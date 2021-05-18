@@ -1,0 +1,37 @@
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> etiquetas </th>
+            <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastModifiedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> creador </th>
+            <td mat-cell *matCellDef="let row"> {{row.lastModifiedBy}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Creacion </th>
+            <td mat-cell *matCellDef="let row"> {{row.createdDate |date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="borrar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Borrar</th>
+            <td mat-cell *matCellDef="let row"> <button (click)="deleteTag(row)">Borrar Tarea</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
