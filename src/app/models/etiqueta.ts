@@ -1,5 +1,6 @@
 import { Ietiquetas } from "../interfaces/ietiquetas.interface";
 import { Expertos } from "./expertos";
+import { Mensaje } from "./mensaje";
 
 export class Etiqueta implements Ietiquetas {
   id: number;
@@ -12,6 +13,7 @@ export class Etiqueta implements Ietiquetas {
   createdDate: any;
   deliverDate: any;
   experto: Array<Expertos> = [];
+  mensaje: Array<Mensaje> = [];
 
   constructor(title: string, createdDate: any) {
     this.title = title;
