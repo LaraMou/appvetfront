@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddTareaComponent } from './components/add-tarea/add-tarea.component';
-import { CrearExpertoComponent } from './components/crear-experto/crear-experto.component';
+import { DetalleExpertoComponent } from './components/detalle-experto/detalle-experto.component';
 import { EtiquetasPageComponent } from './modules/etiquetas/etiquetas-page/etiquetas-page.component';
 import { ExpertosPageComponent } from './modules/expertos/expertos-page/expertos-page.component';
 import { LoginPageComponent } from './modules/login-page/login-page.component';
@@ -21,8 +21,8 @@ const routes: Routes = [
     component: ExpertosPageComponent
   },
   {
-    path: 'expertos/form', // http:localhost:4200/login
-    component: CrearExpertoComponent
+    path: 'detalle/:id', // http:localhost:4200/login
+    component: DetalleExpertoComponent
   },
   {
     path: 'etiquetas', // http:localhost:4200/login

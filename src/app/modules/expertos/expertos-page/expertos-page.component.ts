@@ -18,11 +18,7 @@ export class ExpertosPageComponent  {
 
   ngOnInit(): void {
 
-    this.expertoService.getExpertos().subscribe((result)=>{
-
-      this.listaExpertos = result
-          })
-
+ 
   }
 
 

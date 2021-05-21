@@ -1,0 +1,86 @@
+
+
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <!-- <th *ngIf="authService.hasRole('ROLE_USER')">#</th> -->
+          <th>Foto</th>
+          <th>NOMBRE</th>
+          <th>CONTACTO</th>
+          <th>TAREAS</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <div class="container">
+            <div class="row">
+
+              <div class="col-sm">
+                <ul *ngIf="experto" class="list-group text-dark mb-3">
+                  <li class="list-group-item active">{{experto.nombre}}</li>
+                  <li class="list-group-item">{{experto.apellido}}</li>
+                  <li class="list-group-item">{{experto.email}}</li>
+                </ul>
+                  <!---pendiente-->
+                  <!-- <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                    <label class="custom-file-label" for="inputGroupFile04">Seleccionar foto</label>
+                  </div>
+                  <div class="input-group-append">
+                    <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
+                  </div>
+                </div> -->
+
+                <!-- <div *ngIf="progreso > 0" class="progress" style="height: 40px;">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width:progreso+'%'}" attr.aria-valuenow="{{progreso}}" aria-valuemin="0" aria-valuemax="100">
+                    {{progreso}}%
+                  </div>
+                </div> -->
+
+              </div>
+
+              <div class="col-sm">
+                <img *ngIf="experto?.foto" src="http://localhost:8080/api/uploads/img/{{experto.foto}}" alt="{{experto.foto}}" class="img-thumbnail rounded">
+              </div>
+            </div>
+            <!--fin-->
+            <div class="row" >
+              <button type="button" class="btn btn-success btn-sm" [routerLink]="['/etiqueta/form', experto.id]">crear etiqueta</button>
+            </div>
+            <div class="row">
+
+              <div class="alert alert-info my-4" *ngIf="experto.etiquetas.length == 0">
+                No hay tareas asignadas para el experto {{experto.nombre}} {{experto.apellido}}
+              </div>
+
+              <table class="table table-bordered table-striped my-4" *ngIf="experto.etiquetas.length > 0">
+                <thead>
+                  <tr>
+                    <th>Tarea</th>
+                    <th>descripción</th>
+                    <th>fecha</th>
+                    <th>Mensaje</th>
+                    <th>eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let etiqueta of experto.etiquetas">
+                    <td>{{etiqueta.title}}</td>
+                    <td>{{etiqueta.description}}</td>
+                    <td>{{etiqueta.createAt}}</td>
+                    <td>{{etiqueta.mensaje.description}}</td>
+                    <td><button class="btn btn-primary btn-sm" type="button"
+                      [routerLink]="['/etiquetas', etiqueta.id]">ver</button></td>
+                      <td ><button class="btn btn-danger btn-sm" type="button" (click)="delete(etiqueta)">eliminar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+
+
+

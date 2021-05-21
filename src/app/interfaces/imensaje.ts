@@ -2,6 +2,6 @@ import { Etiqueta } from "../models/etiqueta";
 
 export interface Imensaje {
   id: number;
-  descripcion: string;
+  description: string;
   etiqueta: Etiqueta;
 }

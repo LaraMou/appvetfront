@@ -17,7 +17,7 @@ import { Expertos } from 'src/app/models/expertos';
   encapsulation: ViewEncapsulation.None
 })
 export class AddTareaComponent  {
-  public etiqueta: Etiqueta = new Etiqueta("",new Date());
+  public etiqueta: Etiqueta = new Etiqueta();
   titulo: string = "Crear Etiqueta";
   errores: string[];
   constructor(private etiquetaService: EtiquetaService,

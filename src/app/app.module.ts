@@ -39,7 +39,8 @@ import { ExpertListaComponent } from './components/expert-lista/expert-lista.com
 import { TareaListaComponent } from './components/tarea-lista/tarea-lista.component';
 import { AddTareaComponent } from './components/add-tarea/add-tarea.component';
 import { LoginPageComponent } from './modules/login-page/login-page.component';
-import { CrearExpertoComponent } from './components/crear-experto/crear-experto.component';
+
+import { DetalleExpertoComponent } from './components/detalle-experto/detalle-experto.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CrearExpertoComponent } from './components/crear-experto/crear-experto.
     TareaListaComponent,
     AddTareaComponent,
     LoginPageComponent,
-    CrearExpertoComponent,
+    DetalleExpertoComponent,
+
 
 
   ],

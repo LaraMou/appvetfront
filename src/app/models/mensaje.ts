@@ -3,7 +3,7 @@ import { Etiqueta } from "./etiqueta";
 
 export class Mensaje implements Imensaje{
   id: number;
-  descripcion: string;
+  description: string;
   etiqueta: Etiqueta;
 
 }
