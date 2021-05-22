@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-detalle-experto',
+  selector: 'detalle-experto',
   templateUrl: './detalle-experto.component.html',
   styleUrls: ['./detalle-experto.component.scss']
 })

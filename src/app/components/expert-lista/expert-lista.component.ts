@@ -7,7 +7,7 @@ import { URL_BACKEND } from 'src/app/services/config.service';
 import { ExpertoService } from 'src/app/services/experto.service';
 import { ModalService } from 'src/app/services/modal.service';
 import Swal from 'sweetalert2';
-import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-expert-lista',
@@ -35,17 +35,19 @@ export class ExpertListaComponent implements OnInit {
       let page: number = +params.get('page');
 
       if (!page) {
+        console.log("page"+page)
         page = 0;
       }
 
       this.expertoService.getExpertos(page)
         .pipe(
           tap(response => {
-            console.log('ClientesComponent: tap 3');
+            console.log('ExpertosComponent: tap 3');
             (response.content as Expertos[]).forEach(experto => console.log(experto.nombre));
           })
         ).subscribe(response => {
           this.expertos = response.content as Expertos[];
+          console.log("paginador")
           this.paginador = response;
         });
     });
@@ -83,6 +85,7 @@ export class ExpertListaComponent implements OnInit {
   }
 
   abrirModal(experto: Expertos) {
+    console.log("***MLO entro"+experto.nombre);
     this.expertoSeleccionado = experto;
     this.modalService.abrirModal();
   }

@@ -34,7 +34,7 @@ export class ExpertoService {
         return response;
       }),
       tap(response => {
-        console.log('ClienteService: tap 2');
+        console.log('ExpertosService: tap 2');
         (response.content as Expertos[]).forEach(experto => console.log(experto.nombre));
       }));
   }
@@ -51,7 +51,8 @@ export class ExpertoService {
       }));
   }
   create(experto: Expertos): Observable<Expertos> {
-    return this.http.put(this.urlEndpoint, experto)
+    console.log("entrada para crear")
+    return this.http.post(this.urlEndpoint, experto)
       .pipe(
         map((response: any) => response.experto as Expertos),
         catchError(e => {

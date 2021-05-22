@@ -16,6 +16,7 @@ export class ModalService {
   }
 
   abrirModal() {
+    
     this.modal = true;
   }
 
