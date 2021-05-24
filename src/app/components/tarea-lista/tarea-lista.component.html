@@ -3,11 +3,14 @@
   <div class="card-body text-primary">
     <h5 class="card-title">Listado de etiquetas</h5>
     <div class="my-2 text-left">
-
+      <h4 class="card-title">
+        <a [routerLink]="['/expertos']" class="btn btn-light btn-xs">&laquo; volver</a>
+      </h4>
     </div>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
+          <th>id</th>
           <th>TITIULO</th>
           <th>ESTADO</th>
           <th>MODIFICADO POR</th>
@@ -20,6 +23,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let etiqueta of etiquetas">
+          <td>{{ etiqueta.id }}</td>
           <td>{{ etiqueta.title }}</td>
           <td>{{ etiqueta.estado }}</td>
           <td>{{ etiqueta.lastModifiedBy }}</td>

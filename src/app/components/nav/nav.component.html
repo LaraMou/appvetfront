@@ -3,6 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
+
     <mat-toolbar>
       <img
       width="40"
@@ -29,6 +30,7 @@
       </button>
       <span>appvet</span>
     </mat-toolbar>
+    <app-header></app-header>
     <div class="content"role="main">
       <router-outlet></router-outlet>
    </div>

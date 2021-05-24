@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddTareaComponent } from './components/add-tarea/add-tarea.component';
 import { DetalleExpertoComponent } from './components/detalle-experto/detalle-experto.component';
 import { ExpertListaComponent } from './components/expert-lista/expert-lista.component';
+import { FormTaskComponent } from './components/form-task/form-task.component';
 import { FormComponent } from './components/form/form.component';
+import { Auth } from './guards/auth';
 import { EtiquetasPageComponent } from './modules/etiquetas/etiquetas-page/etiquetas-page.component';
 import { ExpertosPageComponent } from './modules/expertos/expertos-page/expertos-page.component';
 import { LoginPageComponent } from './modules/login-page/login-page.component';
@@ -21,29 +23,34 @@ const routes: Routes = [
   {
     path: 'expertos', // http:localhost:4200/login
     component: ExpertosPageComponent
+
   },
   { path: 'expertos/page/:page', component: ExpertosPageComponent },
   {
     path: 'expertos/form', // http:localhost:4200/login
     component: FormComponent
-  },
-  { path: 'expertos/form/:id', component: FormComponent },
 
-  {
-    path: 'detalle/:id', // http:localhost:4200/login
-    component: DetalleExpertoComponent
   },
+  {
+    path: 'expertos/form/:id', component: FormComponent,
+
+  },
+
+
   {
     path: 'etiquetas', // http:localhost:4200/login
     component: EtiquetasPageComponent
+
   },
   {
     path: 'etiquetas/form', // http:localhost:4200/login
     component: AddTareaComponent
+
   },
   {
     path: 'etiquetas/form/:id', // http:localhost:4200/login
     component: AddTareaComponent
+
   },
 
 

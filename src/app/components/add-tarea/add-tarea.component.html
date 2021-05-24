@@ -12,83 +12,163 @@
 
         <!-- Formulario, al pulsar en el submit, llama a la funcion addContact -->
         <!-- Cada control almacena una propiedad de un atributo con ngModel -->
-        <form #form="ngForm" (ngSubmit)="create()">
+        <form #form="ngForm">
 
           <div class="row form-group">
             <div class="col-md-6 col-12 form-group">
 
               <!-- Nombre completo -->
               <!-- Requerido, 3 caracteres minimo -->
-              <label for="name">Nombre (*)</label>
+              <label for="name">Titulo (*)</label>
               <input type="text"
-                class="form-control"
-                name="name"
-                id="name"
-                placeholder="Escribe un titulo..."
-                minlength="3"
-                required
-                #name="ngModel"
-                [(ngModel)]="etiqueta.title"
-                [ngClass]="{
+                     class="form-control"
+                     name="name"
+                     id="name"
+                     placeholder="Escribe un titulo..."
+                     minlength="3"
+                     required
+                     #name="ngModel"
+                     [(ngModel)]="etiqueta.title"
+                     [ngClass]="{
                   'is-valid': name.dirty && !name.errors,
                   'is-invalid': name.dirty && name.errors
                 }">
 
-                <!-- Muestra si es correcto o no (bootstrap) -->
-                <div class="valid-feedback">
-                  <span>¡Correcto!</span>
-                </div>
-                <div class="invalid-feedback">
-                  <span *ngIf="name.errors?.required">Valor requerido</span>
-                  <span *ngIf="name.errors?.minlength">Se necesitan minimo {{name.errors?.minlength.requiredLength}} caracteres y llevas {{name.errors?.minlength.actualLength}} caracteres</span>
-                </div>
+              <!-- Muestra si es correcto o no (bootstrap) -->
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+              <div class="invalid-feedback">
+                <span *ngIf="name.errors?.required">Valor requerido</span>
+                <span *ngIf="name.errors?.minlength">Se necesitan minimo {{name.errors?.minlength.requiredLength}}
+                  caracteres y llevas {{name.errors?.minlength.actualLength}} caracteres</span>
               </div>
             </div>
-            <div class="row form-group">
-              <div class="col-12 form-group">
-                <!-- Empleado -->
-                <label for="disponibilidad">Empleado</label>
-                <select class="custom-select is-valid"
-                  name="disponibilidad"
-                  id="disponibilidad"
-                  #direccion="ngModel"
-                  [(ngModel)]="etiqueta.motivo">
-                  <option value="Tano">Tano</option>
-                  <option value="Pablo">Pablo</option>
-                  <option value="Carmen">Carmen</option>
-                </select>
-                <div class="valid-feedback">
-                  <span>¡Correcto!</span>
-                </div>
-
-              </div>
-   
-
-            </div>
-            <div class="row form-group">
-              <div class="col-md-6 col-12 form-group">
-                <!-- Descripcion -->
-              <!-- 50 caracteres maximo -->
-              <label for="description">Dirección</label>
-              <textarea name="description"
-                class="form-control is-valid"
-                id="description"
-                maxlength="40"
-                placeholder="Radiografia..."
-                #desc="ngModel"
-                [(ngModel)]="etiqueta.description"></textarea>
-
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <!-- boton submit -->
-                  <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block">Añadir tarea</button>
-                </div>
-              </div>
-              </div>
-            </form>
           </div>
-        </div>
+          <div class="row form-group">
+            <div class="col-md-6 col-12 form-group">
 
+              <!-- Nombre completo -->
+              <!-- Requerido, 3 caracteres minimo -->
+              <label for="description" class="">Descripcion (*)</label>
+              <input type="text"
+                     class="form-control"
+                     name="description"
+                     id="description"
+                     placeholder="Consulta flipy"
+                     minlength="3"
+                     required
+                     #name="ngModel"
+                     [(ngModel)]="etiqueta.description"
+                     [ngClass]="{
+                    'is-valid': name.dirty && !name.errors,
+                    'is-invalid': name.dirty && name.errors
+                  }">
 
+              <!-- Muestra si es correcto o no (bootstrap) -->
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+              <div class="invalid-feedback">
+                <span *ngIf="name.errors?.required">Valor requerido</span>
+                <span *ngIf="name.errors?.minlength">Se necesitan minimo {{name.errors?.minlength.requiredLength}}
+                  caracteres y llevas {{name.errors?.minlength.actualLength}} caracteres</span>
+              </div>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-12 form-group">
+              <!-- Empleado -->
+              <label for="disponibilidad">Asignado</label>
+              <select class="custom-select is-valid"
+                      name="disponibilidad"
+                      id="disponibilidad"
+                      #direccion="ngModel"
+                      [(ngModel)]="etiqueta.lastModifiedBy">
+                <option value="Tano">Tano</option>
+                <option value="Linus">Linus</option>
+                <option value="Carmen">Carmen</option>
+              </select>
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="createdDate" class="col-form-label col-sm-2">Fecha</label>
+            <div class="col-sm-6">
+
+              <input [matDatepicker]="miDatepicker" class="form-control" [(ngModel)]="etiqueta.createdDate"
+                     name="createdDate" style="display:inline; width:300px;">
+              <mat-datepicker-toggle [for]="miDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #miDatepicker></mat-datepicker>
+            </div>
+
+          </div>
+          <div class="form-group row">
+            <label for="deliverDate" class="col-form-label col-sm-2">Fecha</label>
+            <div class="col-sm-6">
+
+              <input [matDatepicker]="deliverDate" class="form-control" [(ngModel)]="etiqueta.deliverDate"
+                     name="deliverDate" style="display:inline; width:300px;">
+              <mat-datepicker-toggle [for]="deliverDate"></mat-datepicker-toggle>
+              <mat-datepicker #deliverDate></mat-datepicker>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-12 form-group">
+              <!-- Empleado -->
+              <label for="estado">Estado</label>
+              <select class="custom-select is-valid"
+                      name="estado"
+                      id="estado"
+                      #direccion="ngModel"
+                      [(ngModel)]="etiqueta.estado">
+                <option value="PENDIENTE">PENDIENTE</option>
+                <option value="CURSO">CURSO</option>
+                <option value="FINALIZADO">FINALIZADO</option>
+              </select>
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-6 col-12 form-group">
+              <!-- Descripcion -->
+              <!-- 50 caracteres maximo -->
+              <label for="description">Mensaje</label>
+              <textarea name="description"
+                        class="form-control is-valid"
+                        id="description"
+                        maxlength="40"
+                        placeholder="Radiografia..."
+                        #desc="ngModel"
+                        [(ngModel)]="etiqueta.description"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!etiqueta.id else elseBlock"
+                      [disabled]="!form.form.valid">Crear
+              </button>
+
+              <ng-template #elseBlock>
+                <button class="btn btn-primary" role="button" (click)='update()' [disabled]="!form.form.valid">Editar
+                </button>
+              </ng-template>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+
+              <!-- boton submit -->
+              <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block">Añadir tarea</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
 

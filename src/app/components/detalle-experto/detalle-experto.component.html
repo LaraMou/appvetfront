@@ -17,6 +17,7 @@
                   <li class="list-group-item active">{{experto.nombre}}</li>
                   <li class="list-group-item">{{experto.apellido}}</li>
                   <li class="list-group-item">{{experto.email}}</li>
+
                   <li class="list-group-item">{{experto.createAt | date:"fullDate"}}</li>
 
                 </ul>
@@ -44,34 +45,35 @@
               </div>
             </div>
             <div class="row" >
-              <button type="button" class="btn btn-success btn-sm" [routerLink]="['/facturas/form', experto.id]">crear factura</button>
+              <button type="button" class="btn btn-success btn-sm" [routerLink]="['/etiquetas/form']">crear tarea</button>
             </div>
             <div class="row">
 
-              <div class="alert alert-info my-4" *ngIf="experto.etiquetas.length == 0">
+              <div class="alert alert-info my-4" *ngIf="experto.tasks.length == 0">
                 No hay tareas asignadas para el experto {{experto.nombre}} {{experto.apellido}}
               </div>
 
-              <table class="table table-bordered table-striped my-4" *ngIf="experto.etiquetas.length > 0">
+              <table class="table table-bordered table-striped my-4"  >
                 <thead>
                   <tr>
-                    <th>folio</th>
+                    <th>title</th>
                     <th>descripción</th>
+                    <th>estado</th>
                     <th>fecha</th>
-                    <th>total</th>
-                    <th>detalle</th>
-                    <th >eliminar</th>
+                    <th>deliverDate</th>
+                    <th >completar</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let factura of experto.etiquetas">
-                    <td>{{etiqueta.id}}</td>
-                    <td>{{factura.descripcion}}</td>
-                    <td>{{factura.createAt}}</td>
-                    <td>{{factura.total}}</td>
+                  <tr *ngFor="let etiqueta of experto.tasks">
+                    <td>{{etiqueta.title}}</td>
+                    <td>{{etiqueta.description}}</td>
+                    <td>{{etiqueta.estado}}</td>
+                    <td>{{etiqueta.createdDate}}</td>
+                    <td>{{etiqueta.deliverDate}}</td>
                     <td><button class="btn btn-primary btn-sm" type="button"
-                      [routerLink]="['/facturas', factura.id]">ver</button></td>
-                      <td *ngIf="authService.hasRole('ROLE_ADMIN')"><button class="btn btn-danger btn-sm" type="button" (click)="delete(factura)">eliminar</button></td>
+                      [routerLink]="['/etiquetas/form', etiqueta.id]">ver</button></td>
+                      <td ><button class="btn btn-danger btn-sm" type="button" (click)="delete(etiqueta)">eliminar</button></td>
                   </tr>
                 </tbody>
               </table>

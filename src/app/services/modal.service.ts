@@ -16,11 +16,12 @@ export class ModalService {
   }
 
   abrirModal() {
-    
+
     this.modal = true;
   }
 
   cerrarModal() {
+    console.log("cerrar")
     this.modal = false;
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Etiqueta } from 'src/app/models/etiqueta';
 import { Expertos } from 'src/app/models/expertos';
+import { EtiquetaService } from 'src/app/services/etiqueta.service';
 import { ExpertoService } from 'src/app/services/experto.service';
 import Swal from 'sweetalert2';
 
@@ -12,36 +14,40 @@ import Swal from 'sweetalert2';
 export class FormComponent implements OnInit {
 
   public experto: Expertos = new Expertos();
-
+  public etiqueta2: Etiqueta = new Etiqueta();
   titulo: string = "Crear Expertos";
 
   errores: string[];
-
+  etiquetas: Etiqueta[];
   constructor(private expertoService: ExpertoService,
     private router: Router,
+    private etiquetaService: EtiquetaService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log("cargadndo")
+
     this.activatedRoute.paramMap.subscribe(params => {
       let id = +params.get('id');
       if (id) {
         this.expertoService.getExperto(id).subscribe((experto) => this.experto = experto);
       }
     });
-
+    this.etiquetaService.getEtiquetas().subscribe(
+      etiquetas => this.etiquetas = etiquetas
+    )
 
   }
-
+  
   create(): void {
     console.log(this.experto.nombre,this.experto.apellido,this.experto.email,this.experto.createAt);
+
     this.expertoService.create(this.experto)
       .subscribe(
         experto => {
           this.router.navigate(['/expertos']);
-          console.log("hey dear")
+
           Swal.fire('Nuevo experto', `El experto ${this.experto.nombre} ha sido creado con éxito`, 'success');
-          console.log("hey dear")
+
         },
         err => {
           this.errores = err.error.errors as string[];
@@ -53,7 +59,8 @@ export class FormComponent implements OnInit {
 
   update(): void {
     console.log(this.experto);
-    this.experto.etiquetas = null;
+    console.log("estoy actualizando")
+    // this.experto.etiquetas = null;
     this.expertoService.update(this.experto)
       .subscribe(
         json => {

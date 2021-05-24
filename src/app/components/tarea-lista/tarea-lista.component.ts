@@ -10,13 +10,17 @@ import Swal from 'sweetalert2';
 })
 export class TareaListaComponent implements OnInit {
   etiquetas: Etiqueta[];
+  activatedRoute: any;
   constructor(private etiquetaService: EtiquetaService) { }
 
   ngOnInit() {
     this.etiquetaService.getEtiquetas().subscribe(
       etiquetas => this.etiquetas = etiquetas
     )
+
+
   }
+
 
   delete(etiqueta: Etiqueta): void {
     Swal.fire({

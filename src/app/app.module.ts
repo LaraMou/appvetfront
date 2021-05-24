@@ -43,6 +43,8 @@ import { LoginPageComponent } from './modules/login-page/login-page.component';
 import { DetalleExpertoComponent } from './components/detalle-experto/detalle-experto.component';
 import { FormComponent } from './components/form/form.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { FormTaskComponent } from './components/form-task/form-task.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     DetalleExpertoComponent,
     FormComponent,
     PaginatorComponent,
+    FormTaskComponent,
+    HeaderComponent,
 
 
 

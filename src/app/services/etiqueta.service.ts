@@ -46,8 +46,19 @@ export class EtiquetaService {
         return throwError(e);
       }));
   }
+  getEtiquetaUser(idUser:number): Observable<Etiqueta> {
+    return this.http.get<Etiqueta>(`${this.urlEndpoint}/user/${idUser}`).pipe(
+      catchError(e => {
+        if (e.status != 401 && e.error.mensaje) {
+          this.router.navigate(['/etiquetas']);
+          console.error(e.error.mensaje);
+        }
+
+        return throwError(e);
+      }));
+  }
   update(etiqueta: Etiqueta): Observable<any> {
-    return this.http.put<any>(`${this.urlEndpoint}/${etiqueta.id}`, etiqueta).pipe(
+    return this.http.put<any>(`${this.urlEndpoint}`, etiqueta).pipe(
       catchError(e => {
         if (e.status == 400) {
           return throwError(e);

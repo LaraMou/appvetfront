@@ -21,7 +21,7 @@
           <th>apellido</th>
           <th>email</th>
           <th>TAREA</th>
-          <th >crear factura</th>
+          <th >crear tarea</th>
           <th >editar</th>
           <th >eliminar</th>
         </tr>
@@ -42,11 +42,11 @@
           <td>
             <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal">
               <mat-chip class="example-box" cdkDrag *ngFor="let vegetable of experto.tasks">
-                  {{ vegetable.title }}
+                  {{ vegetable.id }}
              </mat-chip>
             </mat-chip-list>
           </td>
-          <td ><button type="button" class="btn btn-success btn-sm" [routerLink]="['/expertos/form', experto.id]">crear factura</button></td>
+          <td ><button type="button" class="btn btn-success btn-sm" [routerLink]="['/etiquetas/form', experto.id]">crear tarea</button></td>
           <td >
             <button type="button" name="editar" [routerLink]="['/expertos/form', experto.id]" class="btn btn-primary btn-sm">editar</button>
           </td>

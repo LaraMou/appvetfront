@@ -1,3 +1,4 @@
+import { HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Etiqueta } from 'src/app/models/etiqueta';
@@ -14,47 +15,56 @@ import swal from 'sweetalert2';
   styleUrls: ['./detalle-experto.component.scss']
 })
 export class DetalleExpertoComponent implements OnInit {
-  public experto: Expertos = new Expertos();
+  @Input() experto: Expertos;
+
   titulo: string = "Estas son tus tareas";
-  // private fotoSeleccionada: File;
-  // progreso: number = 0;
+  private fotoSeleccionada: File;
+  progreso: number = 0;
   constructor(private expertoService: ExpertoService,
     private etiquetaService: EtiquetaService,
     // private authService: AuthService,
     private activatedRoute: ActivatedRoute,
      public modalService: ModalService) { }
 
-     ngOnInit() {
-      this.activatedRoute.paramMap.subscribe(params => {
-        let id = +params.get('id');
-        if (id) {
-          this.expertoService.getExperto(id).subscribe((experto) => this.experto = experto);
-        }
-      });
+  ngOnInit() {}
+
+  seleccionarFoto(event) {
+    this.fotoSeleccionada = event.target.files[0];
+    this.progreso = 0;
+    console.log(this.fotoSeleccionada);
+    if (this.fotoSeleccionada.type.indexOf('image') < 0) {
+      Swal.fire('Error seleccionar imagen: ', 'El archivo debe ser del tipo imagen', 'error');
+      this.fotoSeleccionada = null;
     }
+  }
 
+  subirFoto() {
 
+    if (!this.fotoSeleccionada) {
+      Swal.fire('Error Upload: ', 'Debe seleccionar una foto', 'error');
+    } else {
+      this.expertoService.subirFoto(this.fotoSeleccionada, this.experto.id)
+        .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progreso = Math.round((event.loaded / event.total) * 100);
+          } else if (event.type === HttpEventType.Response) {
+            let response: any = event.body;
+            this.experto = response.experto as Expertos;
 
-  delete(etiqueta: Etiqueta): void {
-    Swal.fire({
-      title: 'Está seguro?'
-
-    }).then((result) => {
-      if (result.value) {
-
-        this.etiquetaService.delete(etiqueta.id).subscribe(
-          response => {
-            this.experto.etiquetas = this.experto.etiquetas.filter(tag => tag !== etiqueta)
-            Swal.fire(
-              'Etiqueta Eliminada!',
-              `Etiqueta ${etiqueta.title} eliminada con éxito.`,
-              'success'
-            )
+            this.modalService.notificarUpload.emit(this.experto);
+            Swal.fire('La foto se ha subido completamente!', response.mensaje, 'success');
           }
-        )
+        });
+    }
+  }
 
-      }
-    })
+
+
+
+  cerrarModal() {
+    this.modalService.cerrarModal();
+    this.fotoSeleccionada = null;
+    this.progreso = 0;
   }
 
 }

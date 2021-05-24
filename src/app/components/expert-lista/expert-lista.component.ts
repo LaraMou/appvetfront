@@ -85,7 +85,7 @@ export class ExpertListaComponent implements OnInit {
   }
 
   abrirModal(experto: Expertos) {
-    console.log("***MLO entro"+experto.nombre);
+  
     this.expertoSeleccionado = experto;
     this.modalService.abrirModal();
   }
