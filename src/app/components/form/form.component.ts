@@ -15,6 +15,7 @@ export class FormComponent implements OnInit {
 
   public experto: Expertos = new Expertos();
   public etiqueta2: Etiqueta = new Etiqueta();
+
   titulo: string = "Crear Expertos";
 
   errores: string[];
@@ -37,10 +38,17 @@ export class FormComponent implements OnInit {
     )
 
   }
-  
+  seleccionaTarea(etiqueta) {
+    console.log(etiqueta.id)
+    this.etiqueta2 = etiqueta;
+    this.experto.etiquetas = etiqueta;
+    console.log('Se ha hecho clic sobre el contacto', etiqueta);
+    this.experto.etiquetas= etiqueta;
+    console.log(this.experto.etiquetas)
+}
   create(): void {
     console.log(this.experto.nombre,this.experto.apellido,this.experto.email,this.experto.createAt);
-
+    // this.experto.etiquetas = null;
     this.expertoService.create(this.experto)
       .subscribe(
         experto => {
@@ -59,13 +67,13 @@ export class FormComponent implements OnInit {
 
   update(): void {
     console.log(this.experto);
-    console.log("estoy actualizando")
-    // this.experto.etiquetas = null;
-    this.expertoService.update(this.experto)
+    console.log("estoy actualizando"+this.experto.etiquetas)
+
+    this.expertoService.updateUserTask(this.experto,this.etiqueta2.id)
       .subscribe(
         json => {
           this.router.navigate(['/expertos']);
-          Swal.fire('Expertos Actualizado', `${json.mensaje}: ${json.experto.nombre}`, 'success');
+          Swal.fire('Expertos Actualizado success');
         },
         err => {
           this.errores = err.error.errors as string[];
@@ -74,5 +82,15 @@ export class FormComponent implements OnInit {
         }
       )
   }
+
+  compararEtiqueta(o1: Etiqueta, o2: Etiqueta): boolean {
+    console.log("entrar aqui")
+    if (o1 === undefined && o2 === undefined) {
+      return true;
+    }
+
+    return o1 === null || o2 === null || o1 === undefined || o2 === undefined ? false : o1.id === o2.id;
+  }
+
 
 }

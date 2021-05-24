@@ -59,6 +59,7 @@ export class ExpertoService {
           if (e.status == 400) {
             return throwError(e);
           }
+
           if (e.error.mensaje) {
             console.error(e.error.mensaje);
           }
@@ -66,18 +67,25 @@ export class ExpertoService {
         }));
   }
   update(experto: Expertos): Observable<any> {
-    return this.http.put<any>(`${this.urlEndpoint}/${experto.id}`, experto).pipe(
+    console.log("esperto"+experto)
+    return this.http.put<any>(`${this.urlEndpoint}`, experto).pipe(
       catchError(e => {
         if (e.status == 400) {
           return throwError(e);
         }
-        if (e.error.mensaje) {
-          console.error(e.error.mensaje);
+        return throwError(e);
+      }));
+  }
+  updateUserTask(experto: Expertos,id:number): Observable<any> {
+    console.log("esperto"+experto)
+    return this.http.put<any>(`${this.urlEndpoint}/${id}`, experto).pipe(
+      catchError(e => {
+        if (e.status == 400) {
+          return throwError(e);
         }
         return throwError(e);
       }));
   }
-
   delete(id: number): Observable<Expertos> {
     return this.http.delete<Expertos>(`${this.urlEndpoint}/${id}`).pipe(
       catchError(e => {

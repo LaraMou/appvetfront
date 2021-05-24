@@ -20,6 +20,7 @@ export class DetalleExpertoComponent implements OnInit {
   titulo: string = "Estas son tus tareas";
   private fotoSeleccionada: File;
   progreso: number = 0;
+  etiquetas: Etiqueta[];
   constructor(private expertoService: ExpertoService,
     private etiquetaService: EtiquetaService,
     // private authService: AuthService,
@@ -65,6 +66,27 @@ export class DetalleExpertoComponent implements OnInit {
     this.modalService.cerrarModal();
     this.fotoSeleccionada = null;
     this.progreso = 0;
+  }
+  delete(etiqueta: Etiqueta): void {
+    Swal.fire({
+      title: 'Está seguro de eliminar la tarea?'
+
+    }).then((result) => {
+      if (result.value) {
+
+        this.etiquetaService.delete(etiqueta.id).subscribe(
+          response => {
+            this.experto.etiquetas = this.experto.etiquetas.filter(tag => tag !== etiqueta)
+            Swal.fire(
+              'Etiqueta Eliminada!',
+              `Etiqueta ${etiqueta.title} eliminada con éxito.`,
+              'success'
+            )
+          }
+        )
+
+      }
+    })
   }
 
 }

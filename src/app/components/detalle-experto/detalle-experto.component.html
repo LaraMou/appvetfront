@@ -59,8 +59,8 @@
                     <th>title</th>
                     <th>descripción</th>
                     <th>estado</th>
-                    <th>fecha</th>
-                    <th>deliverDate</th>
+                    <th>fecha Entrega</th>
+                    <th>detalle</th>
                     <th >completar</th>
                   </tr>
                 </thead>
@@ -69,11 +69,11 @@
                     <td>{{etiqueta.title}}</td>
                     <td>{{etiqueta.description}}</td>
                     <td>{{etiqueta.estado}}</td>
-                    <td>{{etiqueta.createdDate}}</td>
                     <td>{{etiqueta.deliverDate}}</td>
+
                     <td><button class="btn btn-primary btn-sm" type="button"
                       [routerLink]="['/etiquetas/form', etiqueta.id]">ver</button></td>
-                      <td ><button class="btn btn-danger btn-sm" type="button" (click)="delete(etiqueta)">eliminar</button></td>
+                    <td ><button class="btn btn-danger btn-sm" type="button" (click)="delete(etiqueta)">eliminar</button></td>
                   </tr>
                 </tbody>
               </table>

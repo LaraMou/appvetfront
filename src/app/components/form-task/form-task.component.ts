@@ -13,8 +13,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-task.component.scss']
 })
 export class FormTaskComponent implements OnInit {
-
-  public etiqueta: Etiqueta= new Etiqueta();
+  value: string = "";
+  public etiqueta: Etiqueta= new Etiqueta();;
   mensaje: Observable<Mensaje[]>;
   titulo: string = "Crear Etiqueta";
   experto: Observable<Expertos[]>;

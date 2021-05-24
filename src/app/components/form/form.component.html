@@ -35,7 +35,26 @@
           </div>
         </div>
       </div>
- 
+      <div class="form-group row">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>TITIULO</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let etiqueta of etiquetas">
+              <td>{{ etiqueta.id }}</td>
+              <td>{{ etiqueta.title }}</td>
+              <td>
+                <button type="button" name="Seleccionar" (click)='seleccionaTarea(etiqueta)' class="btn btn-danger btn-sm">seleccion</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="form-group row">
         <label for="email" class="col-form-label col-sm-2">Email</label>

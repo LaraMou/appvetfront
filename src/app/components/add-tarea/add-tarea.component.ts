@@ -17,6 +17,7 @@ import { Expertos } from 'src/app/models/expertos';
   encapsulation: ViewEncapsulation.None
 })
 export class AddTareaComponent  {
+  value: string = "";
   public etiqueta: Etiqueta = new Etiqueta();
   titulo: string = "Crear Etiqueta";
   errores: string[];

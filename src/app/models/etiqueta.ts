@@ -15,10 +15,7 @@ export class Etiqueta implements Ietiquetas {
   experto: Array<Expertos> = [];
   mensaje: Array<Mensaje> = [];
 
-  // constructor(title: string, createdDate: any) {
-  //   this.title = title;
-  //   this.createdDate = createdDate;
-  // }
+
 
 
 }
