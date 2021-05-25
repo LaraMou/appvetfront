@@ -5,6 +5,12 @@
       <div class="col-12">
         <h1>Tarea</h1>
       </div>
+      <h4 class="card-title">
+        <a [routerLink]="['/expertos']" class="btn btn-light btn-xs">&laquo; volver expertos</a>
+      </h4>
+      <h4 class="card-title">
+        <a [routerLink]="['/etiquetas']" class="btn btn-light btn-xs">&laquo; volver tareas</a>
+      </h4>
     </div>
 
     <div class="row">
@@ -160,14 +166,6 @@
               </ng-template>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12">
-
-              <!-- boton submit -->
-              <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block">Añadir tarea</button>
-            </div>
-          </div>
-
         </form>
       </div>
     </div>

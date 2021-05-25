@@ -21,8 +21,8 @@
           <th>apellido</th>
           <th>email</th>
           <th>TAREA</th>
-          <th >crear tarea</th>
-          <th >editar</th>
+          <th >Modificar tarea</th>
+          <th >asignar tarea</th>
           <th >eliminar</th>
         </tr>
       </thead>
@@ -46,9 +46,9 @@
              </mat-chip>
             </mat-chip-list>
           </td>
-          <td ><button type="button" class="btn btn-success btn-sm" [routerLink]="['/etiquetas/form', experto.id]">crear tarea</button></td>
+          <td ><button type="button" class="btn btn-success btn-sm" [routerLink]="['/etiquetas/form', experto.id]">modificar tarea</button></td>
           <td >
-            <button type="button" name="editar" [routerLink]="['/expertos/form', experto.id]" class="btn btn-primary btn-sm">editar</button>
+            <button type="button" name="editar" [routerLink]="['/expertos/form', experto.id]" class="btn btn-primary btn-sm">asingar</button>
           </td>
           <td >
             <button type="button" name="eliminar" (click)='delete(experto)' class="btn btn-danger btn-sm">eliminar</button>

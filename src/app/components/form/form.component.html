@@ -4,8 +4,11 @@
   </li>
 </ul>
 
-<div class="card bg-dark text-white">
+<div class="card bg-fuchsia text-dark">
   <div class="card-header">{{ titulo }}</div>
+  <h4 class="card-title">
+    <a [routerLink]="['/expertos']" class="btn btn-light btn-xs">&laquo; volver</a>
+  </h4>
   <div class="card-body">
 
     <form #expertoForm="ngForm">
@@ -35,13 +38,14 @@
           </div>
         </div>
       </div>
+      <h4>TAREAS</h4>
       <div class="form-group row">
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
               <th>id</th>
               <th>TITIULO</th>
-              
+
             </tr>
           </thead>
           <tbody>
@@ -56,20 +60,36 @@
         </table>
       </div>
 
-      <div class="form-group row">
-        <label for="email" class="col-form-label col-sm-2">Email</label>
-        <div class="col-sm-6">
-          <input type="email" class="form-control" [(ngModel)]="experto.email" name="email" #email="ngModel"> <!-- required email -->
-          <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-            <div *ngIf="email.errors.required">
-              Email es requerido
+      <div class="row form-group">
+
+        <div class="col-md-6 col-12 form-group">
+
+          <!-- Email -->
+          <!-- Requerido, patron email -->
+          <label for="email">Email (*)</label>
+          <input type="text"
+            class="form-control"
+            name="email"
+            id="email"
+            placeholder="Escribe tu email..."
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            required
+            #email="ngModel"
+            [(ngModel)]="experto.email"
+            [ngClass]="{
+              'is-valid': email.dirty && !email.errors,
+              'is-invalid': email.dirty && email.errors
+            }">
+
+            <div class="valid-feedback">
+              <span>¡Correcto!</span>
             </div>
-            <div *ngIf="email.errors.email">
-              Email debe tener un formato válido
+            <div class="invalid-feedback">
+              <span *ngIf="email.errors?.required">Valor requerido</span>
+              <span *ngIf="email.errors?.pattern">El formato no es correcto</span>
             </div>
-          </div>
         </div>
-      </div>
+        </div>
 
       <div class="form-group row">
         <label for="createAt" class="col-form-label col-sm-2">Fecha</label>

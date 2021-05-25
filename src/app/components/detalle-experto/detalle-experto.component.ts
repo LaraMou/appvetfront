@@ -69,14 +69,14 @@ export class DetalleExpertoComponent implements OnInit {
   }
   delete(etiqueta: Etiqueta): void {
     Swal.fire({
-      title: 'Está seguro de eliminar la tarea?'
+      title: 'Esta acción no puede realizarse existen usuarios asignados'
 
     }).then((result) => {
       if (result.value) {
 
         this.etiquetaService.delete(etiqueta.id).subscribe(
           response => {
-            this.experto.etiquetas = this.experto.etiquetas.filter(tag => tag !== etiqueta)
+            this.experto.etiquetas = this.etiquetas.filter(tag => tag !== etiqueta)
             Swal.fire(
               'Etiqueta Eliminada!',
               `Etiqueta ${etiqueta.title} eliminada con éxito.`,

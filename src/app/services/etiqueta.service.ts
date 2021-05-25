@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class EtiquetaService {
 //endpoint atributos
   private urlEndpoint: string = 'http://localhost:8080/api/tasks';
-  constructor(private http:HttpClient,private router: Router) { }
+  private urlEndpoint2: string = 'http://localhost:8080/api/tasks/user';
+  constructor(private http: HttpClient, private router: Router) { }
 
   getEtiquetas(): Observable<Etiqueta[]> {
     return this.http.get<Etiqueta[]>(this.urlEndpoint);
@@ -20,6 +21,9 @@ export class EtiquetaService {
   }
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.urlEndpoint}/${id}`);
+  }
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.urlEndpoint2}/${id}`);
   }
   create(etiqueta: Etiqueta): Observable<Etiqueta> {
     return this.http.post(this.urlEndpoint, etiqueta)

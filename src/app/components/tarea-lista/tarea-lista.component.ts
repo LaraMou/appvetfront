@@ -29,7 +29,7 @@ export class TareaListaComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
 
-        this.etiquetaService.delete(etiqueta.id).subscribe(
+        this.etiquetaService.deleteUser(etiqueta.id).subscribe(
           response => {
             this.etiquetas = this.etiquetas.filter(tag => tag !== etiqueta)
             Swal.fire(
