@@ -10,8 +10,9 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ExpertoService {
-//endpoint atributos
-  private urlEndpoint: string = 'http://localhost:8080/api/users/';
+//endpoint atributos cambio a heroku
+  private urlEndpoint: string = 'https://cfgs-appvet.herokuapp.com/api/users';
+  // private urlEndpoint: string = 'http://localhost:8080/api/users/';
   constructor(private http:HttpClient,private router: Router) { }
 
   // getExpertos(): Observable<Expertos[]> {

@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class EtiquetaService {
 //endpoint atributos
-  private urlEndpoint: string = 'http://localhost:8080/api/tasks';
-  private urlEndpoint2: string = 'http://localhost:8080/api/tasks/user';
+  // private urlEndpoint: string = 'http://localhost:8080/api/tasks';
+  private urlEndpoint: string = 'https://cfgs-appvet.herokuapp.com/api/tasks';
+  private urlEndpoint2: string = 'https://cfgs-appvet.herokuapp.com/api/tasks/user';
   constructor(private http: HttpClient, private router: Router) { }
 
   getEtiquetas(): Observable<Etiqueta[]> {
